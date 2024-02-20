@@ -91,7 +91,7 @@ module n_60_delay_line(input wire clock, input wire [7:0] data, output wire [7:0
     integer i; // Loop variable
 
     always @(posedge clock) begin
-        temp_reg[0] <= data; // First delay block gets the input data
+        temp <= data; // First delay block gets the input data
         for (i = 1; i < 60; i = i + 1) begin
             temp = delay_reg[i - 1]; // Each subsequent delay block gets the output of the previous one
             delay_reg[i] <= temp;
