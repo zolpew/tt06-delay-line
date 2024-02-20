@@ -48,18 +48,17 @@ module n_30_delay_line(input wire clock, input wire [7:0] data,output wire [7:0]
 
     reg [7:0] delay_reg [0:29]; // Array of registers for 30 delay blocks
     reg [7:0] temp;  // Temporary register
-    integer i; // Loop variable
 
-    always @(posedge clock) begin
-        temp <= data; // First delay block gets the input data
-        genvar i;
+    genvar i;
         generate
-            for (i = 1; i < 30; i = i + 1) begin
-                temp <= delay_reg[i - 1]; // Each subsequent delay block gets the output of the previous one
-                delay_reg[i] <= temp;
+            for (i = 1; i < 30; i = i + 1) begin : gen_loop
+                always @(posedge clock) begin
+                    temp <= data; // First delay block gets the input data
+                    temp <= delay_reg[i - 1]; // Each subsequent delay block gets the output of the previous one
+                    delay_reg[i] <= temp;
+                end
             end
         endgenerate
-    end
 
     assign out = delay_reg[29]; // Output is the output of the last delay block
 
@@ -70,20 +69,19 @@ module n_45_delay_line(input wire clock, input wire [7:0] data,output wire [7:0]
 
     reg [7:0] delay_reg [0:44]; // Array of registers for 30 delay blocks
     reg [7:0] temp;  // Temporary register
-    integer i; // Loop variable
+
 
     
-    always @(posedge clock) begin
-        genvar i;
+    genvar i;
         generate
-        temp <= data; // First delay block gets the input data
-            for (i = 1; i < 45; i = i + 1) begin
-                temp <= delay_reg[i - 1]; // Each subsequent delay block gets the output of the previous one
-                delay_reg[i] <= temp;
-
-        end
+            for (i = 1; i < 45; i = i + 1) begin : gen_loop
+                always @(posedge clock) begin
+                    temp <= data; // First delay block gets the input data
+                    temp <= delay_reg[i - 1]; // Each subsequent delay block gets the output of the previous one
+                    delay_reg[i] <= temp;
+                end
+            end
         endgenerate
-    end
     
     assign out = delay_reg[44]; // Output is the output of the last delay block
 
@@ -94,19 +92,18 @@ module n_60_delay_line(input wire clock, input wire [7:0] data, output wire [7:0
 
     reg [7:0] delay_reg [0:59]; // Array of registers for 30 delay blocks
     reg [7:0] temp;  // Temporary register
-    integer i; // Loop variable
 
-    always @(posedge clock) begin
-        genvar i;
+
+    genvar i;
         generate
-        temp <= data; // First delay block gets the input data
-            for (i = 1; i < 60; i = i + 1) begin
-                temp <= delay_reg[i - 1]; // Each subsequent delay block gets the output of the previous one
-                delay_reg[i] <= temp;
-
-        end
+            for (i = 1; i < 60; i = i + 1) begin : gen_loop
+                always @(posedge clock) begin
+                    temp <= data; // First delay block gets the input data
+                    temp <= delay_reg[i - 1]; // Each subsequent delay block gets the output of the previous one
+                    delay_reg[i] <= temp;
+                end
+            end
         endgenerate
-    end
 
     assign out = delay_reg[59]; // Output is the output of the last delay block
 
@@ -118,20 +115,18 @@ module n_90_delay_line(input wire clock, input wire [7:0] data,  output wire [7:
     reg [7:0] delay_reg [0:89]; // Array of registers for 30 delay blocks
     reg [7:0] temp;  // Temporary register
 
-    integer i; // Loop variable
+ 
 
-    always @(posedge clock) begin
-        genvar i;
+    genvar i;
         generate
-        temp <= data; // First delay block gets the input data
-            for (i = 1; i < 90; i = i + 1) begin
-                temp <= delay_reg[i - 1]; // Each subsequent delay block gets the output of the previous one
-                delay_reg[i] <= temp;
-
-        end
+            for (i = 1; i < 90; i = i + 1) begin : gen_loop
+                always @(posedge clock) begin
+                    temp <= data; // First delay block gets the input data
+                    temp <= delay_reg[i - 1]; // Each subsequent delay block gets the output of the previous one
+                    delay_reg[i] <= temp;
+                end
+            end
         endgenerate
-     
-    end
 
     assign out = delay_reg[89]; // Output is the output of the last delay block
 
