@@ -58,8 +58,8 @@ module n_30_delay_line(input wire clock, input wire [7:0] data, input wire reset
     genvar i;
         generate
             for (i = 1; i < 30; i = i + 1) begin : gen_loop
-                always @(posedge clock or negedge rst_n) begin
-                    if (!rst_n) // If reset_n is low
+                always @(posedge clock or negedge reset_n) begin
+                    if (!reset_n) // If reset_n is low
                         temp <= 8'b00000000;
                         
              
@@ -88,8 +88,8 @@ module n_45_delay_line(input wire clock, input wire [7:0] data, input wire reset
     genvar i;
         generate
             for (i = 1; i < 45; i = i + 1) begin : gen_loop
-                always @(posedge clock or negedge rst_n) begin
-                    if (!rst_n) // If reset_n is low
+                always @(posedge clock or negedge reset_n) begin
+                    if (!reset_n) // If reset_n is low
                         temp <= 8'b00000000;
                         
              
@@ -116,8 +116,8 @@ module n_60_delay_line(input wire clock, input wire [7:0] data, input wire reset
     genvar i;
         generate
             for (i = 1; i < 60; i = i + 1) begin : gen_loop
-                always @(posedge clock or negedge rst_n) begin
-                    if (!rst_n) // If reset_n is low
+                always @(posedge clock or negedge reset_n) begin
+                    if (!reset_n) // If reset_n is low
                         temp <= 8'b00000000;
                         
              
@@ -145,8 +145,8 @@ module n_90_delay_line(input wire clock, input wire [7:0] data, input wire reset
     genvar i;
         generate
             for (i = 1; i < 90; i = i + 1) begin : gen_loop
-                always @(posedge clock or negedge rst_n) begin
-                    if (!rst_n) // If reset_n is low
+                always @(posedge clock or negedge reset_n) begin
+                    if (!reset_n) // If reset_n is low
                         temp <= 8'b00000000;
                         
              
