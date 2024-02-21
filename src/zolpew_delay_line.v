@@ -54,7 +54,7 @@ module n_30_delay_line(input wire clock, input wire [7:0] data, input wire reset
 
     reg [7:0] delay_reg [0:29]; // Array of registers for 30 delay blocks
     reg [7:0] temp;  // Temporary register
-
+    integer i;
     genvar i;
         generate
             for (i = 1; i < 30; i = i + 1) begin : gen_loop
@@ -87,7 +87,7 @@ module n_45_delay_line(input wire clock, input wire [7:0] data, input wire reset
     reg [7:0] temp;  // Temporary register
 
 
-    
+    integer i;
     genvar i;
         generate
             for (i = 1; i < 45; i = i + 1) begin : gen_loop
@@ -118,7 +118,7 @@ module n_60_delay_line(input wire clock, input wire [7:0] data, input wire reset
     reg [7:0] delay_reg [0:59]; // Array of registers for 30 delay blocks
     reg [7:0] temp;  // Temporary register
 
-
+    integer i;
     genvar i;
         generate
             for (i = 1; i < 60; i = i + 1) begin : gen_loop
@@ -150,7 +150,7 @@ module n_90_delay_line(input wire clock, input wire [7:0] data, input wire reset
     reg [7:0] temp;  // Temporary register
 
  
-
+    integer i;
     genvar i;
         generate
             for (i = 1; i < 90; i = i + 1) begin : gen_loop
