@@ -21,10 +21,10 @@ module tt_um_zolpew_example_delay_line (
     wire [7:0] out3;
     wire [7:0] out4;
 
-    n_30_delay_line jalur1 (.clock(clk), .data(ui_in),reset_n(rst_n), .out(out1));
-    n_45_delay_line jalur2 (.clock(clk), .data(ui_in),reset_n(rst_n), .out(out2));
-    n_60_delay_line jalur3 (.clock(clk), .data(ui_in),reset_n(rst_n), .out(out3));
-    n_90_delay_line jalur4 (.clock(clk), .data(ui_in),reset_n(rst_n), .out(out4));
+    n_30_delay_line jalur1 (.clock(clk), .data(ui_in),.reset_n(rst_n), .out(out1));
+    n_45_delay_line jalur2 (.clock(clk), .data(ui_in),.reset_n(rst_n), .out(out2));
+    n_60_delay_line jalur3 (.clock(clk), .data(ui_in),.reset_n(rst_n), .out(out3));
+    n_90_delay_line jalur4 (.clock(clk), .data(ui_in),.reset_n(rst_n), .out(out4));
     
     always @(out1, out2, out3, out4, uio_in,ena)
         begin
