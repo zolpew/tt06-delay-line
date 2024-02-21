@@ -21,10 +21,10 @@ module tt_um_zolpew_example_delay_line (
     wire [7:0] out3;
     wire [7:0] out4;
 
-    n_30_delay_line jalur1 (.clock(clk), .data(ui_in), .out(out1));
-    n_45_delay_line jalur2 (.clock(clk), .data(ui_in), .out(out2));
-    n_60_delay_line jalur3 (.clock(clk), .data(ui_in), .out(out3));
-    n_90_delay_line jalur4 (.clock(clk), .data(ui_in), .out(out4));
+    n_30_delay_line jalur1 (.clock(clk), .data(ui_in),rst_n(rst_n), .out(out1));
+    n_45_delay_line jalur2 (.clock(clk), .data(ui_in),rst_n(rst_n), .out(out2));
+    n_60_delay_line jalur3 (.clock(clk), .data(ui_in),rst_n(rst_n), .out(out3));
+    n_90_delay_line jalur4 (.clock(clk), .data(ui_in),rst_n(rst_n), .out(out4));
     
     always @(out1, out2, out3, out4, uio_in,ena)
         begin
@@ -50,7 +50,7 @@ module tt_um_zolpew_example_delay_line (
 endmodule
 
 
-module n_30_delay_line(input wire clock, input wire [7:0] data,output wire [7:0] out);
+module n_30_delay_line(input wire clock, input wire [7:0] data, input wire rst_n ,output wire [7:0] out);
 
     reg [7:0] delay_reg [0:29]; // Array of registers for 30 delay blocks
     reg [7:0] temp;  // Temporary register
@@ -78,7 +78,7 @@ module n_30_delay_line(input wire clock, input wire [7:0] data,output wire [7:0]
 
 endmodule
 
-module n_45_delay_line(input wire clock, input wire [7:0] data,output wire [7:0] out);
+module n_45_delay_line(input wire clock, input wire [7:0] data, input wire rst_n,output wire [7:0] out);
 
     reg [7:0] delay_reg [0:44]; // Array of registers for 30 delay blocks
     reg [7:0] temp;  // Temporary register
@@ -107,7 +107,7 @@ module n_45_delay_line(input wire clock, input wire [7:0] data,output wire [7:0]
 
 endmodule
 
-module n_60_delay_line(input wire clock, input wire [7:0] data, output wire [7:0] out);
+module n_60_delay_line(input wire clock, input wire [7:0] data, input wire rst_n , output wire [7:0] out);
 
     reg [7:0] delay_reg [0:59]; // Array of registers for 30 delay blocks
     reg [7:0] temp;  // Temporary register
@@ -135,7 +135,7 @@ module n_60_delay_line(input wire clock, input wire [7:0] data, output wire [7:0
 
 endmodule
 
-module n_90_delay_line(input wire clock, input wire [7:0] data,  output wire [7:0] out);
+module n_90_delay_line(input wire clock, input wire [7:0] data, input wire rst_n ,  output wire [7:0] out);
 
     reg [7:0] delay_reg [0:89]; // Array of registers for 30 delay blocks
     reg [7:0] temp;  // Temporary register
