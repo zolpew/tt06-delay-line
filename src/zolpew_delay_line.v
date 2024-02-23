@@ -53,25 +53,25 @@ endmodule
 module n_30_delay_line(input wire clock, input wire [7:0] data, input wire reset_n ,output wire [7:0] out);
 
     reg [7:0] delay_reg [0:29]; // Array of registers for 30 delay blocks
-    reg [7:0] temp;  // Temporary register
+    reg [7:0] temp [0:29];  // Temporary register
   
     genvar i;
         generate
             for (i = 0; i < 30; i = i + 1) begin : gen_loop
                 always @(posedge clock or negedge reset_n) begin
                     if (!reset_n) // If reset_n is low
-                        temp <= 8'b00000000;
+                        temp[i] <= 8'b00000000;
                         
              
                     else begin
                       
                         if (i==0) begin
-                            temp <= data; // First delay block gets the input data
-                            delay_reg[i] <= temp;
+                            temp[i] <= data; // First delay block gets the input data
+                            delay_reg[i] <= temp[i];
                         end
                         else begin
-                            temp <= delay_reg[i - 1]; // Each subsequent delay block gets the output of the previous one
-                            delay_reg[i] <= temp;
+                            temp[i] <= delay_reg[i - 1]; // Each subsequent delay block gets the output of the previous one
+                            delay_reg[i] <= temp[i];
                         end
                     end
                 end
@@ -86,7 +86,7 @@ endmodule
 module n_45_delay_line(input wire clock, input wire [7:0] data, input wire reset_n,output wire [7:0] out);
 
     reg [7:0] delay_reg [0:44]; // Array of registers for 30 delay blocks
-    reg [7:0] temp;  // Temporary register
+    reg [7:0] temp [0:44];  // Temporary register
 
 
  
@@ -95,17 +95,17 @@ module n_45_delay_line(input wire clock, input wire [7:0] data, input wire reset
             for (i = 0; i < 45; i = i + 1) begin : gen_loop
                 always @(posedge clock or negedge reset_n) begin
                     if (!reset_n) // If reset_n is low
-                        temp <= 8'b00000000;
+                        temp[i] <= 8'b00000000;
                         
              
                     else begin
                         if (i==0) begin
                             temp <= data; // First delay block gets the input data
-                            delay_reg[i] <= temp;
+                            delay_reg[i] <= temp[i];
                         end
                         else begin
-                            temp <= delay_reg[i - 1]; // Each subsequent delay block gets the output of the previous one
-                            delay_reg[i] <= temp;
+                            temp[i] <= delay_reg[i - 1]; // Each subsequent delay block gets the output of the previous one
+                            delay_reg[i] <= temp[i];
                         end
                     end
                 end
@@ -120,7 +120,7 @@ endmodule
 module n_60_delay_line(input wire clock, input wire [7:0] data, input wire reset_n , output wire [7:0] out);
 
     reg [7:0] delay_reg [0:59]; // Array of registers for 30 delay blocks
-    reg [7:0] temp;  // Temporary register
+    reg [7:0] temp [0:59];  // Temporary register
 
     
     genvar i;
@@ -128,17 +128,17 @@ module n_60_delay_line(input wire clock, input wire [7:0] data, input wire reset
             for (i = 0; i < 60; i = i + 1) begin : gen_loop
                 always @(posedge clock or negedge reset_n) begin
                     if (!reset_n) // If reset_n is low
-                        temp <= 8'b00000000;
+                        temp[i] <= 8'b00000000;
                         
              
                     else begin
                         if (i==0) begin
-                            temp <= data; // First delay block gets the input data
-                            delay_reg[i] <= temp;
+                            temp[i] <= data; // First delay block gets the input data
+                            delay_reg[i] <= temp[i];
                         end
                         else begin
-                            temp <= delay_reg[i - 1]; // Each subsequent delay block gets the output of the previous one
-                            delay_reg[i] <= temp;
+                            temp[i] <= delay_reg[i - 1]; // Each subsequent delay block gets the output of the previous one
+                            delay_reg[i] <= temp[i];
                         end
                     end
                 end
@@ -153,7 +153,7 @@ endmodule
 module n_90_delay_line(input wire clock, input wire [7:0] data, input wire reset_n ,  output wire [7:0] out);
 
     reg [7:0] delay_reg [0:89]; // Array of registers for 30 delay blocks
-    reg [7:0] temp;  // Temporary register
+    reg [7:0] temp [0:89];  // Temporary register
 
  
  
@@ -162,17 +162,17 @@ module n_90_delay_line(input wire clock, input wire [7:0] data, input wire reset
             for (i = 0; i < 90; i = i + 1) begin : gen_loop
                 always @(posedge clock or negedge reset_n) begin
                     if (!reset_n) // If reset_n is low
-                        temp <= 8'b00000000;
+                        temp[i] <= 8'b00000000;
                         
              
                     else begin
                         if (i==0) begin
-                            temp <= data; // First delay block gets the input data
-                            delay_reg[i] <= temp;
+                            temp[i] <= data; // First delay block gets the input data
+                            delay_reg[i] <= temp[i];
                         end
                         else begin
                             temp <= delay_reg[i - 1]; // Each subsequent delay block gets the output of the previous one
-                            delay_reg[i] <= temp;
+                            delay_reg[i] <= temp[i];
                         end
                     end
                 end
