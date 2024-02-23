@@ -171,7 +171,7 @@ module n_90_delay_line(input wire clock, input wire [7:0] data, input wire reset
                             delay_reg[i] <= temp[i];
                         end
                         else begin
-                            temp <= delay_reg[i - 1]; // Each subsequent delay block gets the output of the previous one
+                            temp[i] <= delay_reg[i - 1]; // Each subsequent delay block gets the output of the previous one
                             delay_reg[i] <= temp[i];
                         end
                     end
