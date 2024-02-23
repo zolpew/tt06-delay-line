@@ -100,7 +100,7 @@ module n_45_delay_line(input wire clock, input wire [7:0] data, input wire reset
              
                     else begin
                         if (i==0) begin
-                            temp <= data; // First delay block gets the input data
+                            temp[i] <= data; // First delay block gets the input data
                             delay_reg[i] <= temp[i];
                         end
                         else begin
