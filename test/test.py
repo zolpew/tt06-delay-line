@@ -1,32 +1,35 @@
-# SPDX-FileCopyrightText: © 2023 Uri Shaked <uri@tinytapeout.com>
-# SPDX-License-Identifier: MIT
-
 import cocotb
-from cocotb.clock import Clock
-from cocotb.triggers import ClockCycles
+from cocotb.regression import TestFactory
+from cocotb.triggers import RisingEdge
 
-@cocotb.test()
-async def test_adder(dut):
-  dut._log.info("Start")
-  
-  # Our example module doesn't use clock and reset, but we show how to use them here anyway.
-  clock = Clock(dut.clk, 10, units="us")
-  cocotb.start_soon(clock.start())
+@cocotb.coroutine
+def clock_generator(clk, period=10):
+    while True:
+        clk <= 0
+        yield RisingEdge(clk)
+        clk <= 1
+        yield RisingEdge(clk)
+        yield cocotb.triggers.Timer(period // 2)
 
-  # Reset
-  dut._log.info("Reset")
-  dut.ena.value = 1
-  dut.ui_in.value = 0
-  dut.uio_in.value = 0
-  dut.rst_n.value = 0
-  await ClockCycles(dut.clk, 10)
-  dut.rst_n.value = 1
+@cocotb.coroutine
+def stimulus(ui_in, uio_in):
+    yield RisingEdge(ui_in)
+    yield cocotb.triggers.Timer(10)
+    
+    for _ in range(90):
+        ui_in <= cocotb.utils.rand_bitstr(11)
+        yield RisingEdge(ui_in)
+        yield cocotb.triggers.Timer(10)
 
-  # Set the input values, wait one clock cycle, and check the output
-  dut._log.info("Test")
-  dut.ui_in.value = 20
-  dut.uio_in.value = 30
+@cocotb.coroutine
+def run_test(dut):
+    cocotb.fork(clock_generator(dut.clk))
+    yield stimulus(dut.ui_in, dut.uio_in)
+    yield cocotb.triggers.Timer(10)
+    raise cocotb.result.TestSuccess("Simulation complete")
 
-  await ClockCycles(dut.clk, 1)
+# Testbench Factory
+tf = TestFactory(run_test)
 
-  assert dut.uo_out.value == 50
+# You can customize the simulator and add options here if needed
+tf.generate_tests()
