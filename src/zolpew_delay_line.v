@@ -67,6 +67,7 @@ module n_30_delay_line(input wire clock, input wire [7:0] data, input wire reset
                       
                         if (i==0)
                             temp <= data; // First delay block gets the input data
+                            delay_reg[i] <= temp;
                         else begin
                             temp <= delay_reg[i - 1]; // Each subsequent delay block gets the output of the previous one
                             delay_reg[i] <= temp;
@@ -99,6 +100,7 @@ module n_45_delay_line(input wire clock, input wire [7:0] data, input wire reset
                     else begin
                         if (i==0)
                             temp <= data; // First delay block gets the input data
+                            delay_reg[i] <= temp;
                         else begin
                             temp <= delay_reg[i - 1]; // Each subsequent delay block gets the output of the previous one
                             delay_reg[i] <= temp;
@@ -130,6 +132,7 @@ module n_60_delay_line(input wire clock, input wire [7:0] data, input wire reset
                     else begin
                         if (i==0)
                             temp <= data; // First delay block gets the input data
+                            delay_reg[i] <= temp;
                         else begin
                             temp <= delay_reg[i - 1]; // Each subsequent delay block gets the output of the previous one
                             delay_reg[i] <= temp;
@@ -162,6 +165,7 @@ module n_90_delay_line(input wire clock, input wire [7:0] data, input wire reset
                     else begin
                         if (i==0)
                             temp <= data; // First delay block gets the input data
+                            delay_reg[i] <= temp;
                         else begin
                             temp <= delay_reg[i - 1]; // Each subsequent delay block gets the output of the previous one
                             delay_reg[i] <= temp;
