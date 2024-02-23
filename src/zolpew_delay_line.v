@@ -24,7 +24,7 @@ module tt_um_zolpew_example_delay_line (
     n_45_delay_line jalur2 (.clock(clk), .data(ui_in),.reset_n(rst_n), .out(out2));
 
     
-    always @(out1, out2, out3, out4, uio_in,ena)
+    always @(out1, out2, uio_in,ena)
         begin
         if (ena) 
             begin
