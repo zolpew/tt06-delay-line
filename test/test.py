@@ -5,9 +5,9 @@ from cocotb.triggers import RisingEdge
 @cocotb.coroutine
 def clock_generator(clk, period=10):
     while True:
-        clk <= 0
+        clk.value = 0
         yield RisingEdge(clk)
-        clk <= 1
+        clk.value = 1
         yield RisingEdge(clk)
         yield cocotb.triggers.Timer(period // 2)
 
@@ -17,7 +17,7 @@ def stimulus(ui_in, uio_in):
     yield cocotb.triggers.Timer(10)
     
     for _ in range(90):
-        ui_in <= cocotb.utils.rand_bitstr(11)
+        ui_in.value = cocotb.utils.rand_bitstr(11)
         yield RisingEdge(ui_in)
         yield cocotb.triggers.Timer(10)
 
