@@ -45,19 +45,4 @@ module tb ();
     #5 clk = ~clk;
   end
 
-  // Test sequence
-  initial begin
-    clk = 0;
-    ui_in = 0;
-    uio_in = 8'b00000011;
-    #10;
-
-    for (integer i = 0; i < 90; i = i + 1) begin
-      ui_in = $random % 2048; // Generate a random 11-bit number
-      #10;
-    end
-
-    $finish;
-  end
-
 endmodule
