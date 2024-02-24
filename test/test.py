@@ -23,7 +23,7 @@ def stimulus(ui_in, uio_in):
 
 @cocotb.coroutine
 def run_test(dut):
-    cocotb.start_soon(clock_generator(dut.clk))
+    yield cocotb.start(clock_generator(dut.clk))
     yield stimulus(dut.ui_in, dut.uio_in)
     yield cocotb.triggers.Timer(10)
     raise cocotb.result.TestSuccess("Simulation complete")
